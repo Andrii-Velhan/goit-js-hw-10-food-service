@@ -5,9 +5,8 @@ import './styles.css';
 
 import menuItemsTmpl from './templates/menu-items.hbs';
 import menuItems from './menu.json';
-const markup = menuItemsTmpl(menuItems);
 
-console.log(markup);
+//console.log(menuItemsTmpl(menuItems));
 
 const menuContainer = document.querySelector('.js-menu');
 const menuCardsMarkup = createMenuCardsMarkup(menuItems);
