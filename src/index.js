@@ -11,9 +11,39 @@ console.log(markup);
 
 const menuContainer = document.querySelector('.js-menu');
 const menuCardsMarkup = createMenuCardsMarkup(menuItems);
+const BtnSwitch = document.querySelector('input.js-switch-input');
+const bodyEl = document.querySelector('body');
+const Theme = {LIGHT: 'light-theme', DARK: 'dark-theme',};
 
 menuContainer.insertAdjacentHTML('beforeend', menuCardsMarkup);
-menuContainer.addEventListener('click', onMenuContainerClick);
+BtnSwitch.addEventListener('change', onBtnClick);
+
+// function onBtnClick() {
+//     bodyEl.classList.toggle(Theme.DARK);
+// }
+reloadControllTheme();
+function reloadControllTheme() {
+    if (localStorage.getItem('Theme') === Theme.DARK) {
+        BtnSwitch.checked = true;
+        bodyEl.classList.add(Theme.DARK);
+    } else {
+        bodyEl.classList.remove(Theme.DARK);
+        bodyEl.classList.add(Theme.LIGHT);
+        
+    }
+}
+
+function onBtnClick (evt) {
+    if (evt.target.checked) {
+        bodyEl.classList.add(Theme.DARK);
+        bodyEl.classList.remove(Theme.LIGHT);
+        localStorage.setItem('Theme', Theme.DARK);
+      } else {
+        bodyEl.classList.add(Theme.LIGHT);
+        bodyEl.classList.remove(Theme.DARK);
+        localStorage.setItem('Theme', Theme.LIGHT);
+      }
+}
 
 function createMenuCardsMarkup(menuItems) {
     return menuItems.map(menuItemsTmpl).join('');
