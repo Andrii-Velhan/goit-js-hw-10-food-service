@@ -15,7 +15,6 @@ function createMenuCardsMarkup(menuItems) {
 menuContainer.insertAdjacentHTML('beforeend', menuCardsMarkup);
 BtnSwitch.addEventListener('change', onBtnClick);
 
-// function onBtnClick() {
 reloadControllTheme();
 function reloadControllTheme() {
     if (localStorage.getItem('Theme') === Theme.DARK) {
