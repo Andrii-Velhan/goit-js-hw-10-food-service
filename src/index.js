@@ -1,25 +1,21 @@
 import './styles.css';
-
-//const source = document.querySelector('#menu-template').innerHTML.trim();
-//const template = Handlebars.compile(source);
-
 import menuItemsTmpl from './templates/menu-items.hbs';
 import menuItems from './menu.json';
+import { menuContainer, BtnSwitch, bodyEl } from './module/variables';
 
-//console.log(menuItemsTmpl(menuItems));
+const Theme = { LIGHT: 'light-theme', DARK: 'dark-theme', };
 
-const menuContainer = document.querySelector('.js-menu');
+
 const menuCardsMarkup = createMenuCardsMarkup(menuItems);
-const BtnSwitch = document.querySelector('input.js-switch-input');
-const bodyEl = document.querySelector('body');
-const Theme = {LIGHT: 'light-theme', DARK: 'dark-theme',};
+
+function createMenuCardsMarkup(menuItems) {
+    return menuItems.map(menuItemsTmpl).join('');
+}
 
 menuContainer.insertAdjacentHTML('beforeend', menuCardsMarkup);
 BtnSwitch.addEventListener('change', onBtnClick);
 
 // function onBtnClick() {
-//     bodyEl.classList.toggle(Theme.DARK);
-// }
 reloadControllTheme();
 function reloadControllTheme() {
     if (localStorage.getItem('Theme') === Theme.DARK) {
@@ -44,6 +40,3 @@ function onBtnClick (evt) {
       }
 }
 
-function createMenuCardsMarkup(menuItems) {
-    return menuItems.map(menuItemsTmpl).join('');
-}
